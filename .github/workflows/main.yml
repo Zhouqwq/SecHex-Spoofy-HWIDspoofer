@@ -32,12 +32,12 @@ jobs:
 
     - name: Restore
       run: |
-        $projectFile = (Get-ChildItem -Recurse -Filter *.csproj | Select-Object -First 2).FullName
+        $projectFile = (Get-ChildItem -Recurse -Filter *.csproj | Select-Object -Last 1).FullName
         dotnet restore $projectFile
 
     - name: Build and Publish
       run: |
-        $projectFile = (Get-ChildItem -Recurse -Filter *.csproj | Select-Object -First 2).FullName
+        $projectFile = (Get-ChildItem -Recurse -Filter *.csproj | Select-Object -Last 1).FullName
         dotnet publish $projectFile `
           -c Release `
           -r win-x64 `
